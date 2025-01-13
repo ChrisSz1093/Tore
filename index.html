@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fußballtraining Torsumme Zähler</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+        .counter {
+            font-size: 1.5rem;
+            margin: 20px 0;
+        }
+        button, input {
+            font-size: 1rem;
+            padding: 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Fußballtraining Torsumme Zähler</h1>
+
+    <div>
+        <label for="teamA">Name Team A:</label>
+        <input type="text" id="teamA" placeholder="Team A" value="Team A">
+
+        <label for="teamB">Name Team B:</label>
+        <input type="text" id="teamB" placeholder="Team B" value="Team B">
+    </div>
+
+    <div class="counter">
+        <p><span id="teamAName">Team A</span>: <span id="teamAScore">0</span></p>
+        <p><span id="teamBName">Team B</span>: <span id="teamBScore">0</span></p>
+        <p>Torsumme: <span id="totalScore">0</span></p>
+    </div>
+
+    <button id="addGoalTeamA">Tor für Team A</button>
+    <button id="addGoalTeamB">Tor für Team B</button>
+    <button id="resetButton">Zurücksetzen</button>
+
+    <script>
+        let goalCount = 0;
+        let totalScore = 0;
+        let teamAScore = 0;
+        let teamBScore = 0;
+
+        const teamANameInput = document.getElementById('teamA');
+        const teamBNameInput = document.getElementById('teamB');
+        const teamANameDisplay = document.getElementById('teamAName');
+        const teamBNameDisplay = document.getElementById('teamBName');
+        const teamAScoreElement = document.getElementById('teamAScore');
+        const teamBScoreElement = document.getElementById('teamBScore');
+        const totalScoreElement = document.getElementById('totalScore');
+        const addGoalTeamAButton = document.getElementById('addGoalTeamA');
+        const addGoalTeamBButton = document.getElementById('addGoalTeamB');
+        const resetButton = document.getElementById('resetButton');
+
+        // Update team names dynamically
+        teamANameInput.addEventListener('input', () => {
+            teamANameDisplay.textContent = teamANameInput.value || 'Team A';
+        });
+
+        teamBNameInput.addEventListener('input', () => {
+            teamBNameDisplay.textContent = teamBNameInput.value || 'Team B';
+        });
+
+        // Function to add goal for Team A
+        addGoalTeamAButton.addEventListener('click', () => {
+            goalCount += 1;
+            totalScore += goalCount;
+            teamAScore += goalCount;
+
+            teamAScoreElement.textContent = teamAScore;
+            totalScoreElement.textContent = totalScore;
+        });
+
+        // Function to add goal for Team B
+        addGoalTeamBButton.addEventListener('click', () => {
+            goalCount += 1;
+            totalScore += goalCount;
+            teamBScore += goalCount;
+
+            teamBScoreElement.textContent = teamBScore;
+            totalScoreElement.textContent = totalScore;
+        });
+
+        // Reset function
+        resetButton.addEventListener('click', () => {
+            goalCount = 0;
+            totalScore = 0;
+            teamAScore = 0;
+            teamBScore = 0;
+
+            teamAScoreElement.textContent = teamAScore;
+            teamBScoreElement.textContent = teamBScore;
+            totalScoreElement.textContent = totalScore;
+        });
+    </script>
+</body>
+</html>
